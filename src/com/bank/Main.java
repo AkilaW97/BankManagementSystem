@@ -7,23 +7,38 @@ public class Main {
         //Create a bank
         Bank bank = new Bank();
 
-        //create an account
-        Account acc1 = new Account("123456", "Jhon Doe", 1000.00);
-        Account acc2 = new Account("126456", "Jane Doe", 2000.00);
-        Account acc3 = new Account("126456", "Aaron Doe", 3000.00);
+        //create specialized accounts
+        SavingsAccount savingsAccount = new SavingsAccount("123456", "Jhon Doe", 1000.00, 5.0);
+        CurruntAccount curruntAccount = new CurruntAccount("678910", "Jane Doe", 2000.00, 500.00);
 
         //Duplicate account number
         try{
             //Add accounts to the bank
-            bank.addAccount(acc1);
-            bank.addAccount(acc2);
-            bank.addAccount(acc3);
+            bank.addAccount(savingsAccount);
+            bank.addAccount(curruntAccount);
         } catch (DuplicateAccountException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
         //Display all accounts
         bank.displayAllAccounts();
+
+        //Test savings account features
+        System.out.println("\nTesting Savings Account:");
+        savingsAccount.deposit(500.00);
+        savingsAccount.withdraw(200.00);
+        //failed due to minimum balance
+        savingsAccount.withdraw(1500.00);
+
+        savingsAccount.calculateInterest();
+
+        //Test current account features
+        System.out.println("\nTesting Current Account: ");
+        curruntAccount.deposit(1000.00);
+        //succeed - within overdraft limit
+        curruntAccount.withdraw(3000.00);
+        //failed - exceeds overdraft limit
+        curruntAccount.withdraw(1000.00);
 
        //Find an account by account number
         String searchAccountNumber = "123456";

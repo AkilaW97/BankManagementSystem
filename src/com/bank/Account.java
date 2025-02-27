@@ -3,24 +3,24 @@ package com.bank;
 public class Account {
 
     //Attributes
-    private String AccNo;
-    private String AccHolderName;
+    private String accNo;
+    private String accHolderName;
     private Double balance;
 
     //Constructors
     public Account(String AccNo, String AccHolderName, Double balance){
-        this.AccNo = AccNo;
-        this.AccHolderName = AccHolderName;
+        this.accNo = AccNo;
+        this.accHolderName = AccHolderName;
         this.balance = balance;
     }
 
     //Getters and setters
     public String getAccNo() {
-        return AccNo;
+        return accNo;
     }
 
     public String getAccHolderName() {
-        return AccHolderName;
+        return accHolderName;
     }
 
     public Double getBalance() {
