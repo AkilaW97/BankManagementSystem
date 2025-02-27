@@ -13,7 +13,12 @@ public class Bank {
     }
 
     //Methods to add an account
-    public void addAccount(Account account){
+    public void addAccount(Account account) throws DuplicateAccountException{
+
+        //Check if account number already exists
+        if(findAccount(account.getAccNo()) != null){
+            throw new DuplicateAccountException("Account with number " + account.getAccNo() + " already exists.");
+        }
         accounts.add(account);
         System.out.println("Account added successfully");
     }

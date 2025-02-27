@@ -10,16 +10,23 @@ public class Main {
         //create an account
         Account acc1 = new Account("123456", "Jhon Doe", 1000.00);
         Account acc2 = new Account("126456", "Jane Doe", 2000.00);
+        Account acc3 = new Account("126456", "Aaron Doe", 3000.00);
 
-        //Add accounts to the bank
-        bank.addAccount(acc1);
-        bank.addAccount(acc2);
+        //Duplicate account number
+        try{
+            //Add accounts to the bank
+            bank.addAccount(acc1);
+            bank.addAccount(acc2);
+            bank.addAccount(acc3);
+        } catch (DuplicateAccountException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
         //Display all accounts
         bank.displayAllAccounts();
 
        //Find an account by account number
-        String searchAccountNumber = "12345";
+        String searchAccountNumber = "123456";
         Account foundAccount = bank.findAccount(searchAccountNumber);
         if(foundAccount != null){
             System.out.println("Account found: " + foundAccount.getAccHolderName());
