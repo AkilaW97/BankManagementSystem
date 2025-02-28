@@ -32,7 +32,7 @@ public class Account {
     }
 
     //Deposit method
-    public void deposit(double amount){
+    public synchronized void deposit(double amount){
         if(amount > 0){
             balance += amount;
             System.out.println("Deposit successful. New balance: " + balance);
@@ -42,7 +42,7 @@ public class Account {
     }
 
     //withdraw method
-    public void withdraw(double amount){
+    public synchronized void withdraw(double amount){
         if(amount > 0){
             if(balance >= amount){
                 balance -=amount;
