@@ -1,6 +1,6 @@
 package com.bank;
 
-public class SavingsAccount extends Account{
+public class SavingsAccount extends Account implements InterestBearing{
 
     private double interestRate;
 
@@ -17,7 +17,6 @@ public class SavingsAccount extends Account{
     }
 
     //Override the withdrawal method to enforce a minimum balance
-
     @Override
     public void withdraw(double amount) {
         //Minimum balance for savings account
@@ -30,7 +29,8 @@ public class SavingsAccount extends Account{
         }
     }
 
-    //Method to calculate interest
+    //Method to calculate interest from InterestBearing interface
+    @Override
     public void calculateInterest(){
         double interest = getBalance() * interestRate / 100;
         deposit(interest);

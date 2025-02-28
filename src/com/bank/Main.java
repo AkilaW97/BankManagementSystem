@@ -30,7 +30,14 @@ public class Main {
         //failed due to minimum balance
         savingsAccount.withdraw(1500.00);
 
-        savingsAccount.calculateInterest();
+        //Demonstrate polymorphism using InterestBearing  interface
+        System.out.println("\nCalculating interest for interest-bearing accounts:");
+        for(Account account: bank.getAccounts()){
+            if(account instanceof InterestBearing){
+                InterestBearing interestAccount = (InterestBearing) account;
+                interestAccount.calculateInterest();
+            }
+        }
 
         //Test current account features
         System.out.println("\nTesting Current Account: ");
@@ -39,20 +46,6 @@ public class Main {
         curruntAccount.withdraw(3000.00);
         //failed - exceeds overdraft limit
         curruntAccount.withdraw(1000.00);
-
-       //Find an account by account number
-        String searchAccountNumber = "123456";
-        Account foundAccount = bank.findAccount(searchAccountNumber);
-        if(foundAccount != null){
-            System.out.println("Account found: " + foundAccount.getAccHolderName());
-        }else {
-            System.out.println("Account not found.");
-        }
-
-       //Test deposit and withdraw on a found account
-        if(foundAccount != null){
-            foundAccount.deposit(500.00);
-            foundAccount.withdraw(200.00);
-        }
+        
     }
 }

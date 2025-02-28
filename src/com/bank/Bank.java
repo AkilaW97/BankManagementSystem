@@ -45,4 +45,9 @@ public class Bank {
         }
     }
 
+    //Method to get the list of accounts
+    public List<Account> getAccounts(){
+        return accounts;
+    }
+
 }
