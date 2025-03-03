@@ -1,6 +1,10 @@
 package com.bank;
 
+import java.util.logging.Logger;
+
 public class Account {
+
+    private static final Logger logger = Logger.getLogger(Account.class.getName());
 
     //Attributes
     private String accNo;
@@ -12,6 +16,7 @@ public class Account {
         this.accNo = AccNo;
         this.accHolderName = AccHolderName;
         this.balance = balance;
+        logger.info("Account created: " + accNo + " for " + accHolderName);
     }
 
     //Getters and setters
@@ -35,9 +40,9 @@ public class Account {
     public synchronized void deposit(double amount){
         if(amount > 0){
             balance += amount;
-            System.out.println("Deposit successful. New balance: " + balance);
+            logger.info("Deposit successful. Account: " + accNo + " Amount: " + amount + " New Balance: " + balance);
         }else {
-            System.out.println("Invalid deposit amount");
+            logger.warning("Invalid deposit amount. Account: " + accNo + " Amount: " + amount);
         }
     }
 
@@ -46,12 +51,12 @@ public class Account {
         if(amount > 0){
             if(balance >= amount){
                 balance -=amount;
-                System.out.println("Withdrawal successful. New balance: " + balance);
+                logger.info("Withdrawal successful. Account: " + accNo + " Amount: " + amount + " New Balance: " + balance);
             }else{
-                System.out.println("Insufficient Balance. Current balance: " + balance);
+                logger.warning("Insufficient balance. Account: " + accNo + " Amount: " + amount + " Current Balance: " + balance);
             }
         }else {
-            System.out.println("Invalid withdrawal amount.");
+            logger.warning("Invalid withdrawal amount. Account: " + accNo + " Amount: " + amount);
         }
     }
 
